@@ -1,20 +1,20 @@
-/* Colomanie, un framework maison sans fioritures */
+// Colomanie, un framework maison sans fioritures
 
-/* pour besoins de débug */
+// pour besoins de débug
 .dbg { background-color: pink; }
 .dbg .dbg { background-color: yellow; }
 .dbg .dbg .dbg { background-color: cyan; }
 .dbg .dbg:nth-of-type(even) { background-color: silver; }
 
-/* variables -----------------------------------------------------------------*/
+// variables ----------------------------------------------------------------
 @grille: 12;
-@gutter: 0.9375rem;
+@gutter: 15px;
 
-@max-width: 62.5rem;
+@max-width: 960px;
 
-/* cf foundation pour les breakpoints */
+// cf foundation pour les breakpoints
 
-/* mixins --------------------------------------------------------------------*/
+// mixins -------------------------------------------------------------------
 .pdX(@px) {
   padding-left: @px;
   padding-right: @px;
@@ -35,18 +35,17 @@
   margin-bottom: @px;
 }
 
-/* clearfix hack */
-/* voir http://nicolasgallagher.com/micro-clearfix-hack */
+// clearfix hack
+// voir http://nicolasgallagher.com/micro-clearfix-hack
 .cf {
-  *zoom: 1; /* IE 6/7 */
-  &:before, /* pour éviter la fusion des marges */
+  &:before, // pour éviter la fusion des marges supérieures
   &:after { content: " "; display: table; }
   &:after { clear: both; }
 }
 
-/* grille --------------------------------------------------------------------*/
+// grille -------------------------------------------------------------------
 
-/* .bloc, destiné à être l'élément racine d'une grille */
+// .bloc, destiné à être l'élément racine d'une grille
 .blc {
   .pdX((@gutter / 2));
 
@@ -55,7 +54,7 @@
   }
 }
 
-/* lgn, destiné à accueillir les colonnes */
+// lgn, destiné à accueillir les colonnes
 .lgn {
   .cf;
   width: 100%;
@@ -66,7 +65,7 @@
   }
 }
 
-/* col, bah, une colonne quoi */
+// col, bah, une colonne quoi
 .col {
   @media (min-width: @max-width) {
     float: left;
@@ -74,7 +73,7 @@
   }
 }
 
-/* définition des col */
+// définition des col
 .make-lg(@grille, @i: 1) when (@i =< @grille) {
   .lg@{i} {
     width: (@i * 100% / @grille);
@@ -82,12 +81,12 @@
   .make-lg(@grille, (@i + 1));
 }
 
-/* création des col */
+// création des col
 @media (min-width: @max-width) {
   .make-lg(@grille);
 }
 
-/* reset ---------------------------------------------------------------------*/
+// reset --------------------------------------------------------------------
 
 *,
 *:before,

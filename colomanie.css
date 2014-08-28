@@ -1,5 +1,3 @@
-/* Colomanie, un framework maison sans fioritures */
-/* pour besoins de débug */
 .dbg {
   background-color: pink;
 }
@@ -12,15 +10,6 @@
 .dbg .dbg:nth-of-type(even) {
   background-color: silver;
 }
-/* variables -----------------------------------------------------------------*/
-/* cf foundation pour les breakpoints */
-/* mixins --------------------------------------------------------------------*/
-/* clearfix hack */
-/* voir http://nicolasgallagher.com/micro-clearfix-hack */
-.cf {
-  *zoom: 1;
-  /* IE 6/7 */
-}
 .cf:before,
 .cf:after {
   content: " ";
@@ -29,22 +18,17 @@
 .cf:after {
   clear: both;
 }
-/* grille --------------------------------------------------------------------*/
-/* .bloc, destiné à être l'élément racine d'une grille */
 .blc {
-  padding-left: 0.46875rem;
-  padding-right: 0.46875rem;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
 }
-@media (min-width: 62.5rem) {
+@media (min-width: 960px) {
   .blc {
     padding-left: 0;
     padding-right: 0;
   }
 }
-/* lgn, destiné à accueillir les colonnes */
 .lgn {
-  *zoom: 1;
-  /* IE 6/7 */
   width: 100%;
 }
 .lgn:before,
@@ -55,15 +39,14 @@
 .lgn:after {
   clear: both;
 }
-@media (min-width: 62.5rem) {
+@media (min-width: 960px) {
   .lgn {
-    max-width: 62.5rem;
+    max-width: 960px;
     margin-left: auto;
     margin-right: auto;
   }
 }
-/* col, bah, une colonne quoi */
-@media (min-width: 62.5rem) {
+@media (min-width: 960px) {
   .col {
     float: left;
   }
@@ -71,9 +54,7 @@
     float: right;
   }
 }
-/* définition des col */
-/* création des col */
-@media (min-width: 62.5rem) {
+@media (min-width: 960px) {
   .lg1 {
     width: 8.33333333%;
   }
@@ -111,7 +92,6 @@
     width: 100%;
   }
 }
-/* reset ---------------------------------------------------------------------*/
 *,
 *:before,
 *:after {
