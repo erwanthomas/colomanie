@@ -1,0 +1,126 @@
+/* Colomanie, un framework maison sans fioritures */
+/* pour besoins de débug */
+.dbg {
+  background-color: pink;
+}
+.dbg .dbg {
+  background-color: yellow;
+}
+.dbg .dbg .dbg {
+  background-color: cyan;
+}
+.dbg .dbg:nth-of-type(even) {
+  background-color: silver;
+}
+/* variables -----------------------------------------------------------------*/
+/* cf foundation pour les breakpoints */
+/* mixins --------------------------------------------------------------------*/
+/* clearfix hack */
+/* voir http://nicolasgallagher.com/micro-clearfix-hack */
+.cf {
+  *zoom: 1;
+  /* IE 6/7 */
+}
+.cf:before,
+.cf:after {
+  content: " ";
+  display: table;
+}
+.cf:after {
+  clear: both;
+}
+/* grille --------------------------------------------------------------------*/
+/* .bloc, destiné à être l'élément racine d'une grille */
+.blc {
+  padding-left: 0.46875rem;
+  padding-right: 0.46875rem;
+}
+@media (min-width: 62.5rem) {
+  .blc {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+/* lgn, destiné à accueillir les colonnes */
+.lgn {
+  *zoom: 1;
+  /* IE 6/7 */
+  width: 100%;
+}
+.lgn:before,
+.lgn:after {
+  content: " ";
+  display: table;
+}
+.lgn:after {
+  clear: both;
+}
+@media (min-width: 62.5rem) {
+  .lgn {
+    max-width: 62.5rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+/* col, bah, une colonne quoi */
+@media (min-width: 62.5rem) {
+  .col {
+    float: left;
+  }
+  .col.rght {
+    float: right;
+  }
+}
+/* définition des col */
+/* création des col */
+@media (min-width: 62.5rem) {
+  .lg1 {
+    width: 8.33333333%;
+  }
+  .lg2 {
+    width: 16.66666667%;
+  }
+  .lg3 {
+    width: 25%;
+  }
+  .lg4 {
+    width: 33.33333333%;
+  }
+  .lg5 {
+    width: 41.66666667%;
+  }
+  .lg6 {
+    width: 50%;
+  }
+  .lg7 {
+    width: 58.33333333%;
+  }
+  .lg8 {
+    width: 66.66666667%;
+  }
+  .lg9 {
+    width: 75%;
+  }
+  .lg10 {
+    width: 83.33333333%;
+  }
+  .lg11 {
+    width: 91.66666667%;
+  }
+  .lg12 {
+    width: 100%;
+  }
+}
+/* reset ---------------------------------------------------------------------*/
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
