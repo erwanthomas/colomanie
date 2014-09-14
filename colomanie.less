@@ -12,7 +12,22 @@
 
 @max-width: 960px;
 
-// cf foundation pour les breakpoints
+// TODO cf foundation plutôt que bootstrap pour les breakpoints
+
+// Media queries breakpoints
+@xs-min: 480px;      // Extra small screen / phone
+@sm-min: 768px;      // Small screen / tablet
+@md-min: 992px;      // Medium screen / desktop
+@lg-min: 1200px;     // Large screen / wide desktop
+
+@xs-max: (@sm-min - 1);
+@sm-max: (@md-min - 1);
+@md-max: (@lg-min - 1);
+
+// Largeur maximum des .ctn
+@ctn-sm: 750px;
+@ctn-md: 970px;
+@ctn-lg: 1170px;
 
 // mixins -------------------------------------------------------------------
 .pdX(@px) {
@@ -49,42 +64,66 @@
 .blc {
   .pdX((@gutter / 2));
 
-  @media (min-width: @max-width) {
+  // précaution pour avoir quand même un padding dans les cas limites
+  @media (min-width: (@sm-min + @gutter)) and (max-width: @sm-max),
+         (min-width: (@md-min + @gutter)) and (max-width: @md-max),
+         (min-width: (@lg-min + @gutter)) {
     .pdX(0);
   }
 }
 
-// lgn, destiné à accueillir les colonnes
-.lgn {
+// ctn, le conteneur
+.ctn {
   .cf;
   width: 100%;
 
-  @media (min-width: @max-width) {
-    max-width: @max-width;
-    .mgX(auto);
-  }
+  @media (min-width: @sm-min) { max-width: @ctn-sm; .mgX(auto); }
+  @media (min-width: @md-min) { max-width: @ctn-md; }
+  @media (min-width: @lg-min) { max-width: @ctn-lg; }
+}
+
+// .lgn, la ligne
+// NOTE: on peut ne pas l'utiliser si on clearfix le bloc parent de col
+.lgn {
+  .cf;
 }
 
 // col, bah, une colonne quoi
 .col {
-  @media (min-width: @max-width) {
-    float: left;
-    &.rght { float: right; }
-  }
+  float: left;
+  &.rght { float: right; }
+  width: 100%;
 }
 
-// définition des col
+// définition des col minuscules
+.make-xs(@grille, @i: 1) when (@i =< @grille) {
+  .xs@{i} { width: (@i * 100% / @grille); }
+  .make-xs(@grille, (@i + 1));
+}
+
+// définition des col petites
+.make-sm(@grille, @i: 1) when (@i =< @grille) {
+  .sm@{i} { width: (@i * 100% / @grille); }
+  .make-sm(@grille, (@i + 1));
+}
+
+// définition des col moyennes
+.make-md(@grille, @i: 1) when (@i =< @grille) {
+  .md@{i} { width: (@i * 100% / @grille); }
+  .make-md(@grille, (@i + 1));
+}
+
+// définition des col larges
 .make-lg(@grille, @i: 1) when (@i =< @grille) {
-  .lg@{i} {
-    width: (@i * 100% / @grille);
-  }
+  .lg@{i} { width: (@i * 100% / @grille); }
   .make-lg(@grille, (@i + 1));
 }
 
 // création des col
-@media (min-width: @max-width) {
-  .make-lg(@grille);
-}
+.make-xs(@grille);
+@media (min-width: @sm-min) { .make-sm(@grille); }
+@media (min-width: @md-min) { .make-md(@grille); }
+@media (min-width: @lg-min) { .make-lg(@grille); }
 
 // reset --------------------------------------------------------------------
 
